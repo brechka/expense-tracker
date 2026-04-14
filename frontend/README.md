@@ -19,7 +19,7 @@ Runs at http://localhost:3000. Expects the backend API at http://localhost:8000.
 |---------|-------------|
 | `npm run dev` | Start dev server |
 | `npm run build` | Production build |
-| `npm run test` | Run tests (44 tests) |
+| `npm run test` | Run tests (94 tests) |
 | `npm run test:watch` | Tests in watch mode |
 | `npm run lint` | ESLint |
 | `npm run stylelint` | CSS linting |

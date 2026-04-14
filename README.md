@@ -68,7 +68,7 @@ Available services:
 cd backend
 python -m pytest tests/ --cov=src --cov-fail-under=70 -q
 
-# Frontend (44 tests)
+# Frontend (94 tests)
 cd frontend
 npm run test
 ```
@@ -94,7 +94,7 @@ exps-tracker/
 │   │   ├── routes/          # React Router config
 │   │   ├── layouts/         # Page layouts
 │   │   └── utils/           # API client, helpers
-│   ├── tests/               # 44 tests (vitest + Testing Library)
+│   ├── tests/               # 94 tests (vitest + Testing Library)
 │   └── .storybook/          # Storybook config
 ├── .github/workflows/       # CI/CD pipelines
 └── docker-compose.yaml      # Docker Compose setup
