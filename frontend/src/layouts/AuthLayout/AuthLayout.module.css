@@ -1,0 +1,133 @@
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 1rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  overflow: auto;
+  box-sizing: border-box;
+}
+
+.desktopPanel {
+  display: none;
+}
+
+.contentPanel {
+  background: white;
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 320px;
+  position: relative;
+  z-index: 10;
+}
+
+.decorations {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.circle1 {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  opacity: 0.1;
+}
+
+.circle2 {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  top: 80px;
+  right: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff6b6b, #ffa500);
+  opacity: 0.1;
+}
+
+.circle3 {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  bottom: 100px;
+  left: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4ecdc4, #44a08d);
+  opacity: 0.1;
+}
+
+@media (max-width: 767px) {
+  .container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding: 2rem;
+    flex-direction: row;
+    gap: 4rem;
+  }
+
+  .desktopPanel {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    max-width: 400px;
+  }
+
+  .desktopLogo {
+    margin-bottom: 2rem;
+  }
+
+  .desktopLogo img {
+    filter: brightness(0) invert(1);
+    max-width: 200px;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  .desktopIllustration {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 300px;
+  }
+
+  .desktopIllustration img {
+    width: 100%;
+    height: auto;
+    max-width: 280px;
+  }
+
+  .contentPanel {
+    max-width: 420px;
+    padding: 3rem;
+    border-radius: 24px;
+  }
+
+  .decorations {
+    display: none;
+  }
+}

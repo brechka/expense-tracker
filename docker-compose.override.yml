@@ -1,0 +1,64 @@
+services:
+
+  # Disable production-only services in local dev
+  db:
+    profiles: ["production"]
+
+  adminer:
+    profiles: ["production"]
+
+  prestart:
+    profiles: ["production"]
+
+  backend:
+    image: backend:latest
+    restart: "no"
+    ports:
+      - "8000:8000"
+    build:
+      context: ./backend
+    command: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - ENV=development
+      - ENVIRONMENT=local
+      - DATABASE_URL=sqlite:///expenses.db
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+      - FRONTEND_HOST=http://localhost:3000
+      - SMTP_SERVER=mailcatcher
+      - SMTP_PORT=1025
+    depends_on:
+      - mailcatcher
+    develop:
+      watch:
+        - path: ./backend/src
+          action: sync
+          target: /app/src
+        - path: ./backend/requirements.txt
+          action: rebuild
+    networks:
+      - default
+
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "1025:1025"
+
+  frontend:
+    image: frontend:latest
+    restart: "no"
+    ports:
+      - "3000:3000"
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:8000
+    depends_on:
+      - backend
+    networks:
+      - default
+
+networks:
+  traefik-public:
+    external: false

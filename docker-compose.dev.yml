@@ -1,0 +1,32 @@
+services:
+
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    command: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 --reload
+    environment:
+      - ENV=development
+      - ENVIRONMENT=local
+      - DATABASE_URL=sqlite:///expenses.db
+      - SECRET_KEY=dev-secret-key-change-in-production
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:5173
+      - FRONTEND_HOST=http://localhost:3000
+    develop:
+      watch:
+        - path: ./backend/src
+          action: sync
+          target: /app/src
+        - path: ./backend/requirements.txt
+          action: rebuild
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - VITE_API_URL=http://localhost:8000
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend

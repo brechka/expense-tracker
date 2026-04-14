@@ -1,0 +1,52 @@
+# Version control
+.git
+.gitignore
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.Python
+*.egg-info
+dist
+build
+.venv
+venv
+ENV
+
+# Testing
+.pytest_cache
+.coverage
+htmlcov
+tests
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# Environment / secrets
+.env
+.env.local
+.env.production
+
+# Database files (created at runtime)
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+app.json.log
+
+# Dev tools
+dev.py
+Makefile
+.pre-commit-config.yaml
+.editorconfig
+pyproject.toml
+
+# Documentation
+*.md

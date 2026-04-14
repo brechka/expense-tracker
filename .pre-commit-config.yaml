@@ -1,0 +1,52 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+      - id: check-added-large-files
+      - id: check-toml
+      - id: check-yaml
+        args:
+          - --unsafe
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+
+  - repo: https://github.com/psf/black
+    rev: 23.11.0
+    hooks:
+      - id: black
+        files: ^backend/
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.1.6
+    hooks:
+      - id: ruff
+        args: [--fix]
+        files: ^backend/
+
+  - repo: local
+    hooks:
+      - id: eslint-frontend
+        name: eslint (frontend)
+        entry: npx --no-install eslint --ext .js,.jsx,.ts,.tsx src/
+        language: system
+        types: [file]
+        files: ^frontend/src/.*\.(js|jsx|ts|tsx)$
+        pass_filenames: true
+      - id: stylelint-frontend
+        name: stylelint (frontend)
+        entry: npx --no-install stylelint --cache --allow-empty-input
+        language: system
+        types: [file]
+        files: ^frontend/src/.*\.(css|scss)$
+        pass_filenames: true
+      - id: prettier-frontend
+        name: prettier (frontend)
+        entry: npx --no-install prettier --write
+        language: system
+        types: [file]
+        files: ^frontend/src/.*\.(js|jsx|ts|tsx|json|css|scss|md)$
+        pass_filenames: true
+
+ci:
+  autofix_commit_msg: 🎨 [pre-commit.ci] Auto format from pre-commit.com hooks
+  autoupdate_commit_msg: ⬆ [pre-commit.ci] pre-commit autoupdate
